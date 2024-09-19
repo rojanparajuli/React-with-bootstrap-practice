@@ -10,12 +10,12 @@ const Profile = () => {
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [editMode, setEditMode] = useState(false); // State to toggle the modal
+    const [editMode, setEditMode] = useState(false);
     const [editedProfile, setEditedProfile] = useState({
         address: '',
         dob: '',
         about: ''
-    }); // State to hold edited profile info
+    });
 
     let token = localStorage.getItem('token');
 
@@ -44,11 +44,11 @@ const Profile = () => {
     };
 
     const handleEditClick = () => {
-        setEditMode(true); // Show the modal
+        setEditMode(true); 
     };
 
     const handleCloseModal = () => {
-        setEditMode(false); // Close the modal
+        setEditMode(false); 
     };
 
     const handleInputChange = (e) => {
@@ -67,19 +67,19 @@ const Profile = () => {
                 }
             });
             setProfile(response.data.profile);
-            setEditMode(false); // Close the modal after update
+            setEditMode(false); 
         } catch (error) {
             setError('Error updating profile data');
         }
     };
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <p className='text-center' style={{ marginTop: '50%' }}>Loading...</p>;
     if (error) return <p>{error}</p>;
 
     return (
-        <div className="profile-container">
+        <div className="profile-container row">
             {profile && (
-                <div className="cards-container">
+                <div className="cards-container col-md-6">
                     {/* Profile Card (Image and Name) */}
                     <div className="profile-card">
                         <div className="profile-image-container">
@@ -89,12 +89,17 @@ const Profile = () => {
                                 <FontAwesomeIcon icon={faCamera} />
                             </div>
                         </div>
-                        <h1 className="profile-name">{profile?.full_name}</h1>
+                        <div className="profile-name-container">
+                            <h1 className="profile-name">{profile?.full_name}</h1>
+                            {profile.is_verified && (
+                                <div className="verified-icon">
+                                    <img src="src/assets/image/verify-blue-tick-free-png-removebg-preview.png" alt="Verified" className="verified-image" />
+                                </div>
+                            )}
+                        </div>
                     </div>
 
-                    {/* Info Card (Additional Information) */}
-                    <div className="info-card">
-                        {/* Edit Icon in the top-right corner */}
+                    <div className="info-card col-md-6">
                         <div className="edit-icon" onClick={handleEditClick}>
                             <FontAwesomeIcon icon={faPen} />
                         </div>
@@ -103,7 +108,6 @@ const Profile = () => {
                         <p className="profile-info">Date of Birth: {profile?.dob}</p>
                         <p className="profile-info">About: {profile?.about}</p>
                         <div className="social-links">
-                            {/* Social Media Links */}
                             <a href={profile?.facebook} target="_blank" rel="noopener noreferrer">
                                 <img src="src/assets/image/facebook.png" alt="Facebook" className="social-logo" />
                             </a>
@@ -119,7 +123,6 @@ const Profile = () => {
                         </div>
                     </div>
 
-                    {/* Modal Dialog for Editing Profile */}
                     {editMode && (
                         <div className="modal">
                             <div className="modal-content">
