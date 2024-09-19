@@ -10,7 +10,7 @@ import Profile from './Pages/profile_screen';
 
 function App() {
   const location = useLocation(); 
-  const showNavBar = !['/login', '/signup'].includes(location.pathname);
+  const showNavBar = !['/login', '/signup,', '/profile'].includes(location.pathname);
   const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
   
   return (
