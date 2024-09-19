@@ -86,6 +86,14 @@ const Signup = () => {
                     </div>
                     <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
                 </form>
+
+                <div className="or-separator">
+                    <span>OR</span>
+                </div>
+                <button className="btn google-btn">
+                    <h5>Continue with</h5>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png" alt="Google Logo" className="google-logo" />
+                </button>
                 <p className="auth-text">
                     Already have an account? <Link to="/login" className="auth-link">Login here</Link>
                 </p>
