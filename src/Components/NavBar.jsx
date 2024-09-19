@@ -12,12 +12,17 @@ function NavBar() {
   return (
     <>
       <nav className="navbar">
-        <button className="menu-toggle" onClick={toggleDrawer}>
-          ☰
-        </button>
-        <div className="search-form">
-          <input type="search" placeholder="Search" aria-label="Search" />
-          <button type="submit">Search</button>
+        <div className="left-side">
+          {/* Placeholder for any future content on the left side */}
+        </div>
+        <div className="right-side">
+          <div className="search-form">
+            <input type="search" placeholder="Search" aria-label="Search" />
+            <button type="submit">Search</button>
+          </div>
+          <button className="menu-toggle" onClick={toggleDrawer}>
+            ☰
+          </button>
         </div>
       </nav>
 
@@ -28,7 +33,6 @@ function NavBar() {
         <ul className="drawer-menu">
           <li><a href="#">Home</a></li>
           <li><Link to="/profile">Profile</Link></li>
-          {/* <li><a href="#">Link</a></li> */}
         </ul>
       </div>
     </>
