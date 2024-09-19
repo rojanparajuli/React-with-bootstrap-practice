@@ -9,9 +9,9 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         try {
             const response = await axios.post('http://192.168.0.148:8001/api/auth/login/', {
                 username: email,
@@ -21,7 +21,6 @@ const Login = () => {
             if (response.data.success) {
                 localStorage.setItem('isAuthenticated', 'true');
                 localStorage.setItem('token', response.data.token);
-                console.log('successssssssssssssssssss');
                 navigate('/');
             } else {
                 localStorage.setItem('isAuthenticated', 'false');
@@ -30,7 +29,6 @@ const Login = () => {
         } catch (err) {
             localStorage.setItem('isAuthenticated', 'false');
             setError('An error occurred. Please try again.');
-            console.error('Login error:', err);
         }
     };
 
@@ -76,9 +74,20 @@ const Login = () => {
                             </button>
                         </div>
                     </div>
+
                     <button type="submit" className="btn btn-primary btn-block">Login</button>
                     {error && <p className="error-text">{error}</p>}
                 </form>
+
+                <div className="or-separator">
+                    <span>OR</span>
+                </div>
+
+                <button className="btn google-btn">
+                    <h5>Continue with</h5>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png" alt="Google Logo" className="google-logo" />
+                </button>
+
                 <p className="auth-text">
                     Don't have an account? <Link to="/signup" className="auth-link">Sign up here</Link>
                 </p>

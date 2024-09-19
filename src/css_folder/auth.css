@@ -38,24 +38,32 @@
 
 .password-input-wrapper {
   position: relative;
+  margin-bottom: 1rem;
 }
 
 .password-field {
-  display: flex;
-  align-items: center;
+  position: relative; 
 }
 
 .password-field input {
-  flex: 1;
+  width: 100%;
+  padding-right: 50px; 
+  height: 3rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ced4da;
 }
 
 .password-toggle-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
   background: none;
   border: none;
   cursor: pointer;
   color: #007bff;
   font-size: 0.875rem;
-  margin-left: 10px;
 }
 
 .password-toggle-btn:hover {
@@ -101,4 +109,67 @@
 .error-text {
   color: red;
   margin-top: 10px;
+}
+
+.or-separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  position: relative;
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+.or-separator::before, 
+.or-separator::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: #dee2e6;
+}
+
+.or-separator::before {
+  margin-right: 10px;
+}
+
+.or-separator::after {
+  margin-left: 10px;
+}
+
+.google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  color: #444444;
+  border: 1px solid #ccc;
+  padding: 12px 20px;
+  border-radius: 8px;
+  width: 100%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.google-btn h5 {
+  margin: 0;
+  padding-right: 8px; 
+}
+
+.google-logo {
+  width: 60px;
+  height: 25px;
+  transition: transform 0.3s ease;
+}
+
+.google-btn:hover .google-logo {
+  transform: scale(1.05);
+}
+
+.google-btn:hover {
+  background-color: #f8f9fa;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
