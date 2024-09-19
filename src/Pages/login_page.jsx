@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../css_folder/auth.css';
 import axios from 'axios';
+import BASE_URL from '../../baseURL';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -13,7 +14,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://192.168.0.148:8001/api/auth/login/', {
+            const response = await axios.post(BASE_URL + 'auth/login/', {
                 username: email,
                 password: password,
             });
