@@ -1,40 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
-
-const materials = [
-  {
-    id: 1,
-    title: 'DIgital Logic',
-    description: 'BCA 1st Semester',
-    imageUrl: 'src/assets/image/social-share-img-02.jpg',
-  },
-  {
-    id: 2,
-    title: 'English 1',
-    description: 'BCA 1st Semester',
-    imageUrl: 'src/assets/image/english.jpg',
-  },
-  {
-    id: 3,
-    title: 'Math 1',
-    description: 'BCA 1st Semester',
-    imageUrl: 'src/assets/image/acc97c4f6ba2fc68266b7e687511abca.jpg',
-  },
-  {
-    id: 3,
-    title: 'Socialogy',
-    description: 'BCA 1st Semester',
-    imageUrl: 'src/assets/image/maxresdefault.jpg',
-  },
-  {
-    id: 3,
-    title: 'Computer',
-    description: 'BCA 1st Semester',
-    imageUrl: 'src/assets/image/Computer-Science-–-A-Level-Hero.jpg',
-  },
-];
+import Media_Url from '../../mediaUrl';
 
 const MaterialList = () => {
+  const [materials, setMaterials] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchMaterials = async () => {
+      try {
+        const response = await axios.get('http://192.168.0.148:8001/api/pdf/list/');
+        setMaterials(response.data.pdfs);
+      } catch (err) {
+        setError('Error fetching materials');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMaterials();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
   return (
     <div className="material-list-container">
       <h1 className="material-list-title">Study Materials</h1>
@@ -43,17 +39,17 @@ const MaterialList = () => {
           <li key={material.id} className="material-item">
             <div className="material-card">
               <img
-                src={material.imageUrl}
+                src={`${Media_Url}${material.image}`}
                 alt={material.title}
                 className="material-image"
               />
               <div className="material-content">
                 <h2 className="material-title">
-                  <Link to={`/material/${material.id}`} className="material-link">
+                  <Link onClick={() => handleMaterialClick(material.id)} className="material-link">
                     {material.title}
                   </Link>
                 </h2>
-                <p className="material-description">{material.description}</p>
+                <p className="material-description">Created at: {material.created_at}</p>
               </div>
             </div>
           </li>
